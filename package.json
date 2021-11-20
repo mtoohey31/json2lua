@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build-wasm": "tree-sitter build-wasm node_modules/tree-sitter-json && mv tree-sitter-json.wasm public/tree-sitter-json.wasm",
+    "build": "\"$npm_execpath\" build-wasm && vite build --base='./'",
     "serve": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "build-wasm": "tree-sitter build-wasm node_modules/tree-sitter-json"
+    "deploy": "\"$npm_execpath\" run build && \"$npm_node_execpath\" ./scripts/gh-pages.js"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
