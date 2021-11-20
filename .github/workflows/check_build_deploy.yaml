@@ -17,3 +17,5 @@ jobs:
         run: pnpm run check
       - name: Build with pnpm
         run: pnpm run build
+      - name: Deploy to gh-pages
+        run: pnpm run deploy
