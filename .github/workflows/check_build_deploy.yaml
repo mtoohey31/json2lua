@@ -1,10 +1,10 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Check and build with Svelte and pnpm
+name: Check with Svelte, build with pnpm, deploy to gh-pages
 on:
   push:
     branches: ["**"]
 jobs:
-  check_build:
+  check_build_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
