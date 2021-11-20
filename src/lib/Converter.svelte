@@ -5,7 +5,7 @@
 
   import type Parser from "web-tree-sitter";
 
-  export let parser: Parser;
+  export let parser: Parser | null;
 
   function luaify(node: SyntaxNode): string {
     if (node.hasError()) {

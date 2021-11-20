@@ -5,18 +5,43 @@
   import Converter from "./lib/Converter.svelte";
 
   let parser = null;
+  let parserLoadError = false;
 
   onMount(async () => {
-    const jsonLanguage = await Parser.Language.load("./tree-sitter-json.wasm");
-    parser = new Parser();
-    parser.setLanguage(jsonLanguage);
+    let retries = 5;
+    while (retries > 0) {
+      try {
+        const jsonLanguage = await Parser.Language.load(
+          "./tree-sitter-json.wasm"
+        );
+        let fetchedParser = new Parser();
+        fetchedParser.setLanguage(jsonLanguage);
+        parser = fetchedParser;
+        return;
+      } catch {
+        retries -= 1;
+      }
+    }
+    parserLoadError = true;
+    return;
   });
 </script>
 
 <main class="w-screen h-screen bg-white">
   <div class="flex flex-col h-full">
     <h1 class="text-3xl p-4">JSON2Lua</h1>
-    <Converter {parser} />
+    {#if parserLoadError}
+      <div class="flex-grow transition:fade">
+        <div
+          class="text-center relative text-red-500"
+          style="top: 50%; transform: translateY(-50%);"
+        >
+          Failed to load parser... please try reloading the page.
+        </div>
+      </div>
+    {:else}
+      <Converter {parser} />
+    {/if}
     <footer class="flex justify-around p-2">
       <div class="hover:underline">
         <a href="https://github.com/mtoohey31/json2lua">
