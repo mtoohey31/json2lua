@@ -11,7 +11,6 @@
     if (node.hasError()) {
       throw new ParseError(node);
     }
-    console.log(node.toString());
     // TODO: catch errors here
     return luaifyRecursive(node.children[0]);
   }
@@ -64,7 +63,6 @@
       luaOutput = luaify(parser.parse(jsonInput).rootNode);
     } catch (ParseError) {
       // TODO: improve error handling by displaying errors
-      console.log("error");
     }
   }
 </script>
