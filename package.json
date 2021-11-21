@@ -15,6 +15,7 @@
     "@tsconfig/svelte": "^2.0.1",
     "autoprefixer": "^10.3.7",
     "cssnano": "^5.0.8",
+    "gh-pages": "^3.2.3",
     "postcss": "^8.3.9",
     "postcss-load-config": "^3.1.0",
     "svelte": "^3.37.0",
@@ -31,7 +32,6 @@
     "@fontsource/ibm-plex-sans": "^4.5.1",
     "@fontsource/jetbrains-mono": "^4.5.0",
     "@mdi/js": "^6.5.95",
-    "gh-pages": "^3.2.3",
     "web-tree-sitter": "^0.19.4"
   }
 }
