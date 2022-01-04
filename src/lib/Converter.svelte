@@ -67,7 +67,7 @@
   }
 </script>
 
-<div class="flex-grow flex gap-4 px-4">
+<div class="flex-grow flex flex-col sm:flex-row gap-4 px-4">
   <div class="flex-grow flex flex-col">
     <label for="json-input">JSON Input</label>
     <textarea
