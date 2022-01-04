@@ -1,10 +1,9 @@
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Check with Svelte, build with pnpm, deploy to gh-pages
+name: Lint with Prettier, check with Svelte, and build with pnpm
 on:
   push:
     branches: ["**"]
 jobs:
-  check_build_deploy:
+  lint_check_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,9 +12,9 @@ jobs:
         with:
           version: latest
           run_install: true
+      - name: Lint with Prettier
+        run: pnpm run lint
       - name: Check with Svelte
         run: pnpm run check
       - name: Build with pnpm
         run: pnpm run build
-      - name: Deploy to gh-pages
-        run: pnpm run deploy
