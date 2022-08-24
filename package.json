@@ -1,6 +1,7 @@
 {
   "name": "json2lua",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +10,8 @@
     "serve": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "deploy": "\"$npm_execpath\" run build && \"$npm_node_execpath\" ./scripts/gh-pages.js",
-    "lint": "prettier -c ."
+    "lint": "prettier -c .",
+    "license-check": "license-checker --summary"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.33",
@@ -17,6 +19,7 @@
     "autoprefixer": "^10.4.1",
     "cssnano": "^5.0.14",
     "gh-pages": "^3.2.3",
+    "license-checker": "^25.0.1",
     "postcss": "^8.4.5",
     "postcss-load-config": "^3.1.1",
     "prettier": "^2.5.1",
