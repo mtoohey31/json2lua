@@ -8,7 +8,7 @@
   export let parser: Parser | null;
 
   function luaify(node: SyntaxNode): string {
-    if (node.hasError()) {
+    if (node.hasError) {
       throw new ParseError(node);
     }
     // TODO: catch errors here
@@ -34,14 +34,17 @@
         );
       case "pair":
         // TODO: handle keys with unsupported syntax
+        const key = node.childForFieldName("key") as SyntaxNode;
+        const value = node.childForFieldName("value") as SyntaxNode;
         return (
-          node.childForFieldName("key").descendantsOfType("string_content")[0]
-            .text +
+          key.descendantsOfType("string_content")[0].text +
           " = " +
-          luaifyRecursive(node.childForFieldName("value"))
+          luaifyRecursive(value)
         );
       default:
         console.error("unsupported type: " + node.type);
+        // @ts-ignore
+        return;
     }
   }
 

@@ -4,17 +4,19 @@
   import Parser from "web-tree-sitter";
   import Converter from "./lib/Converter.svelte";
 
-  let parser = null;
+  let parser: Parser | null = null;
   let parserLoadError = false;
 
   onMount(async () => {
+    await Parser.init();
+
     let retries = 5;
     while (retries > 0) {
       try {
+        let fetchedParser = new Parser();
         const jsonLanguage = await Parser.Language.load(
           "./tree-sitter-json.wasm"
         );
-        let fetchedParser = new Parser();
         fetchedParser.setLanguage(jsonLanguage);
         parser = fetchedParser;
         return;

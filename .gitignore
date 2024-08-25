@@ -1,3 +1,6 @@
+/.direnv
+result
+
 /node_modules/
 /dist/
 .DS_Store
