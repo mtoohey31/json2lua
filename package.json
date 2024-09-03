@@ -31,11 +31,14 @@
     "tree-sitter-json": "^0.21.0",
     "tslib": "^2.7.0",
     "typescript": "^5.5.4",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "vite-plugin-top-level-await": "^1.4.4",
+    "vite-plugin-wasm": "^3.3.0"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.21",
     "@fontsource/jetbrains-mono": "^5.0.21",
+    "@johnnymorganz/stylua": "^0.20.0",
     "@mdi/js": "^7.4.47",
     "web-tree-sitter": "^0.22.6"
   }

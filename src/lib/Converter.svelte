@@ -1,5 +1,6 @@
 <script lang="ts">
   import ParseError from "../parse-error";
+  import { formatCode, Config, OutputVerification } from "@johnnymorganz/stylua";
 
   import type { SyntaxNode } from "web-tree-sitter";
 
@@ -63,7 +64,7 @@
 
   $: if (parser) {
     try {
-      luaOutput = luaify(parser.parse(jsonInput).rootNode);
+      luaOutput = formatCode(luaify(parser.parse(jsonInput).rootNode), Config.new(), undefined, OutputVerification.None);
     } catch (ParseError) {
       // TODO: improve error handling by displaying errors
     }
