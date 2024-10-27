@@ -1,6 +1,14 @@
 <script lang="ts">
   import ParseError from "../parse-error";
-  import { formatCode, Config, OutputVerification } from "@johnnymorganz/stylua";
+  import init, {
+    formatCode,
+    Config,
+    IndentType,
+    OutputVerification,
+  } from "stylua";
+  import { onMount } from "svelte";
+
+  onMount(init);
 
   import type { SyntaxNode } from "web-tree-sitter";
 
@@ -64,8 +72,22 @@
 
   $: if (parser) {
     try {
-      luaOutput = formatCode(luaify(parser.parse(jsonInput).rootNode), Config.new(), undefined, OutputVerification.None);
-    } catch (ParseError) {
+      const luaified = luaify(parser.parse(jsonInput).rootNode);
+      const config = Config.new()
+        .with_column_width(80)
+        .with_indent_type(IndentType.Spaces)
+        .with_indent_width(2);
+      luaOutput = formatCode(
+        "x =" + luaified,
+        config,
+        undefined,
+        OutputVerification.None,
+      ).slice(4);
+    } catch (e) {
+      if (!(e instanceof ParseError)) {
+        throw e;
+      }
+
       // TODO: improve error handling by displaying errors
     }
   }
